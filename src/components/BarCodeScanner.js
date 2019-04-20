@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
 
-export default class BarcodeScanner extends React.Component {
+export class BarcodeScanner extends React.Component {
   state = {
     hasCameraPermission: null,
   }
@@ -24,14 +24,13 @@ export default class BarcodeScanner extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <BarCodeScanner
-          onBarCodeScanned={this.handleBarCodeScanned}
+          onBarCodeScanned={({ type, data }) => this.props.navigation.navigate('BarCodeDetails', {
+            type: type,
+            data: data,
+          })}
           style={StyleSheet.absoluteFill}
         />
       </View>
     );
-  }
-
-  handleBarCodeScanned = ({ type, data }) => {
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   }
 }
