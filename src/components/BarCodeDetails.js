@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Spinner } from 'native-base';
+import { Spinner, H3, List, ListItem } from 'native-base';
 import { HOST } from './../constants';
 
 export class BarCodeDetails extends Component {
@@ -25,6 +25,31 @@ export class BarCodeDetails extends Component {
       .catch((error) => console.error(error));
   }
 
+  renderDetails(product) {
+    const { id, name, materials } = product;
+    return(
+      <View key={id}>
+        <H3>{name}</H3>
+        <List>
+          {materials.map(el => {
+            const { material, name } = el;
+            return(
+              <ListItem
+                key={material.id}
+                button={true}
+                onPress={() => this.props.navigation.navigate('MaterialDetails', {
+                  data: material.id,
+                })}
+              >
+                <Text>{material.name} {name}</Text>
+              </ListItem>
+            )
+          })}
+        </List>
+      </View>
+    )
+  }
+
   render() {
     const { isLoading, data } = this.state;
 
@@ -32,6 +57,11 @@ export class BarCodeDetails extends Component {
       return (
         <Spinner
           color='green'
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
         />
       )
     }
@@ -45,9 +75,7 @@ export class BarCodeDetails extends Component {
       >
         {(data.length === 0)
           ? (<Text>Ничего не найдено</Text>)
-          : (data.map(el => (
-            <Text key={el.id}>{el.name}</Text>
-          )))
+          : (data.map(el => this.renderDetails(el)))
         }
       </View>
     )

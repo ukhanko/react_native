@@ -9,6 +9,7 @@ import {
   Label,
   Button,
   Text,
+  Icon,
 } from 'native-base';
 
 export class Home extends Component {
@@ -44,9 +45,24 @@ export class Home extends Component {
               margin: 15,
               marginTop: 50
             }}
+            onPress={() => this.props.navigation.navigate('BarCodeDetails', {
+              data: inputValue,
+            })}
+          >
+            <Text>Check it</Text>
+          </Button>
+          <Button
+            style={{
+              borderRadius: 50,
+              width: 70,
+              height: 70,
+              justifyContent: "center",
+              alignSelf: "flex-end",
+              marginRight: 15
+            }}
             onPress={() => this.props.navigation.navigate('BarcodeScanner')}
           >
-            <Text>Lets Scan It!</Text>
+            <Icon name='camera' />
           </Button>
         </Content>
       </Container>
