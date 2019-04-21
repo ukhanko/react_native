@@ -1,0 +1,16 @@
+import models
+
+m1 = models.Material(name='PET', description='Полиэтилентерефталат (лавсан)')
+m2 = models.Material(name='HDPE', description='Полиэтилен высокой плотности (низкого давления)')
+m1.save()
+m2.save()
+p1 = models.Part(name='Бутылка', material=m1)
+p2 = models.Part(name='Крышка', material=m2)
+code = models.BarCodes(UPCEAN='4603771220101', name='Минеральная вода 0,5 л')
+code.materials.append(p1)
+code.materials.append(p2)
+code.save()
+a = models.Address(city='Нижний Новгород', street='Нижневолжская Набережная', building='11')
+a.materials.append(m1)
+a.materials.append(m2)
+a.save()
