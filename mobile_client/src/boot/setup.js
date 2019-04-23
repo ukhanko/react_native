@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import App from "../App";
 
 export default class Setup extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isReady: false
     };

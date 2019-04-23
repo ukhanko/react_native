@@ -5,7 +5,7 @@ import { BarCodeScanner, Permissions } from 'expo';
 export class BarcodeScanner extends React.Component {
   state = {
     hasCameraPermission: null,
-  }
+  };
 
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);

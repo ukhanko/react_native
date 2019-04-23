@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { Spinner, H3, List, ListItem } from 'native-base';
-import { HOST } from './../constants';
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
+import {Spinner, H3, List, ListItem} from 'native-base';
+import {HOST} from '../constants';
 
 export class BarCodeDetails extends Component {
   constructor(props) {
@@ -26,14 +26,14 @@ export class BarCodeDetails extends Component {
   }
 
   renderDetails(product) {
-    const { id, name, materials } = product;
-    return(
+    const {id, name, materials} = product;
+    return (
       <View key={id}>
         <H3>{name}</H3>
         <List>
           {materials.map(el => {
-            const { material, name } = el;
-            return(
+            const {material, name} = el;
+            return (
               <ListItem
                 key={material.id}
                 button={true}
@@ -51,7 +51,7 @@ export class BarCodeDetails extends Component {
   }
 
   render() {
-    const { isLoading, data } = this.state;
+    const {isLoading, data} = this.state;
 
     if (isLoading) {
       return (
@@ -67,11 +67,12 @@ export class BarCodeDetails extends Component {
     }
 
     return (
-      <View style={{
-        flex: 1,
-        justifyContent: "center",
-        alignSelf: "center",
-      }}
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignSelf: "center",
+        }}
       >
         {(data.length === 0)
           ? (<Text>Ничего не найдено</Text>)

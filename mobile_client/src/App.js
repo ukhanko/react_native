@@ -16,7 +16,7 @@ const AppNavigator = createStackNavigator(
     initialRouteName: 'Home',
     headerMode: "none",
   }
-)
+);
 
 const AppContainer = createAppContainer(AppNavigator);
 
