@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Container,
   Content,
@@ -16,11 +16,12 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: null
-    }
+      inputValue: null,
+    };
   }
 
   render() {
+    const { navigation: { navigate } } = this.props;
     const { inputValue } = this.state;
     return (
       <Container>
@@ -28,11 +29,11 @@ export class Home extends Component {
         <Content>
           <Form>
             <Item stackedLabel>
-              <Label>{'Введите штрих код'}</Label>
+              <Label>Введите штрих код</Label>
               <Input
                 value={inputValue}
-                onChangeText={(text) => this.setState({
-                  inputValue: text
+                onChangeText={text => this.setState({
+                  inputValue: text,
                 })}
               />
             </Item>
@@ -41,11 +42,11 @@ export class Home extends Component {
             rounded
             success
             style={{
-              alignSelf: "center",
+              alignSelf: 'center',
               margin: 15,
-              marginTop: 50
+              marginTop: 50,
             }}
-            onPress={() => this.props.navigation.navigate('BarCodeDetails', {
+            onPress={() => navigate('BarCodeDetails', {
               data: inputValue,
             })}
           >
@@ -56,16 +57,16 @@ export class Home extends Component {
               borderRadius: 50,
               width: 70,
               height: 70,
-              justifyContent: "center",
-              alignSelf: "flex-end",
-              marginRight: 15
+              justifyContent: 'center',
+              alignSelf: 'flex-end',
+              marginRight: 15,
             }}
-            onPress={() => this.props.navigation.navigate('BarcodeScanner')}
+            onPress={() => navigate('BarcodeScanner')}
           >
-            <Icon name='camera' />
+            <Icon name="camera" />
           </Button>
         </Content>
       </Container>
-    )
+    );
   }
 }

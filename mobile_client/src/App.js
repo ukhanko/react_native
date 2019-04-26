@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { BarcodeScanner } from './components/BarCodeScanner';
 import { BarCodeDetails } from './components/BarCodeDetails';
 import { MaterialDetails } from './components/MaterialDetails';
-import { Home } from "./components/Home";
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { Home } from './components/Home';
 
 const AppNavigator = createStackNavigator(
   {
@@ -14,16 +14,12 @@ const AppNavigator = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    headerMode: "none",
-  }
+    headerMode: 'none',
+  },
 );
 
 const AppContainer = createAppContainer(AppNavigator);
 
-export default class App extends Component {
-  render() {
-    return (
-      <AppContainer />
-    );
-  }
-}
+export const App = () => (
+  <AppContainer />
+);

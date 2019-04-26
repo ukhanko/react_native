@@ -1,13 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { AppLoading, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import App from "../App";
+import RobotoFont from 'native-base/Fonts/Roboto.ttf';
+import RoboteMediumFont from 'native-base/Fonts/Roboto_medium.ttf';
+import { App } from '../App';
 
 export default class Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      isReady: false,
     };
   }
 
@@ -17,19 +19,20 @@ export default class Setup extends Component {
 
   async loadFonts() {
     await Font.loadAsync({
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+      Roboto: RobotoFont,
+      Roboto_medium: RoboteMediumFont,
       ...Ionicons.font,
     });
     this.setState({ isReady: true });
   }
 
   render() {
-    if (!this.state.isReady) {
+    const { isReady } = this.state;
+    if (!isReady) {
       return <AppLoading />;
     }
     return (
       <App />
-    )
+    );
   }
 }

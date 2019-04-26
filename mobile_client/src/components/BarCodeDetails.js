@@ -1,77 +1,88 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-import {Spinner, H3, List, ListItem} from 'native-base';
-import {HOST} from '../constants';
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import {
+  Spinner,
+  H3,
+  List,
+  ListItem,
+} from 'native-base';
+import { HOST } from '../constants';
 
 export class BarCodeDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      data: []
-    }
+      data: [],
+    };
   }
 
   componentDidMount() {
-    const barCode = this.props.navigation.getParam('data', null);
+    const { navigation: { getParam } } = this.props;
+    const barCode = getParam('data', null);
     return fetch(`${HOST}/api/bar-codes/${barCode}`)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then((responseJson) => {
         this.setState({
           isLoading: false,
-          data: responseJson.data
-        })
+          data: responseJson.data,
+        });
       })
-      .catch((error) => console.error(error));
+      .catch(error => console.error(error));
   }
 
   renderDetails(product) {
-    const {id, name, materials} = product;
+    const { navigation: { navigate } } = this.props;
+    const { id, name, materials } = product;
     return (
       <View key={id}>
         <H3>{name}</H3>
         <List>
-          {materials.map(el => {
-            const {material, name} = el;
+          {materials.map((el) => {
+            const { material, name: materialName } = el;
             return (
               <ListItem
                 key={material.id}
-                button={true}
-                onPress={() => this.props.navigation.navigate('MaterialDetails', {
+                button
+                onPress={() => navigate('MaterialDetails', {
                   data: material.id,
                 })}
               >
-                <Text>{material.name} {name}</Text>
+                <Text>
+                  {material.name}
+                  {' '}
+                  {materialName}
+                </Text>
               </ListItem>
-            )
+            );
           })}
         </List>
       </View>
-    )
+    );
   }
 
   render() {
-    const {isLoading, data} = this.state;
+    const { isLoading, data } = this.state;
 
     if (isLoading) {
       return (
         <Spinner
-          color='green'
+          color="green"
           style={{
             flex: 1,
-            justifyContent: "center",
-            alignSelf: "center",
+            justifyContent: 'center',
+            alignSelf: 'center',
           }}
         />
-      )
+      );
     }
 
     return (
       <View
         style={{
           flex: 1,
-          justifyContent: "center",
-          alignSelf: "center",
+          justifyContent: 'center',
+          alignSelf: 'center',
         }}
       >
         {(data.length === 0)
@@ -79,6 +90,6 @@ export class BarCodeDetails extends Component {
           : (data.map(el => this.renderDetails(el)))
         }
       </View>
-    )
+    );
   }
 }

@@ -1,1 +1,1 @@
-export const HOST = "http://192.168.43.67:5000";
+export const HOST = 'http://victorcss.pythonanywhere.com';
