@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View } from 'react-native';
 import {
   Spinner,
@@ -6,85 +6,56 @@ import {
   List,
   ListItem,
 } from 'native-base';
-import { HOST } from '../constants';
 
-export class MaterialDetails extends Component {
-  static renderAdrees(address) {
-    const { city, building, street } = address;
+const renderAdrees = (address) => {
+  const { city, building, street } = address;
+  return (
+    <Text>
+      {city}
+      {', '}
+      {building}
+      {', '}
+      {street}
+    </Text>
+  );
+};
+
+export const MaterialDetails = ({ isLoading, data }) => {
+  const { addresses = [] } = data;
+  if (isLoading) {
     return (
-      <Text>
-        {city}
-        {', '}
-        {building}
-        {', '}
-        {street}
-      </Text>
+      <Spinner
+        color="green"
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignSelf: 'center',
+        }}
+      />
     );
   }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      data: [],
-    };
-  }
-
-  componentDidMount() {
-    const { navigation: { getParam } } = this.props;
-    const materialId = getParam('data', null);
-    return fetch(`${HOST}/api/material/${materialId}`)
-      .then(response => response.json())
-      .then((responseJson) => {
-        this.setState({
-          isLoading: false,
-          data: responseJson.data,
-        });
-      })
-      .catch(error => console.error(error));
-  }
-
-
-  render() {
-    const { isLoading, data } = this.state;
-    const { addresses = [] } = data;
-
-    if (isLoading) {
-      return (
-        <Spinner
-          color="green"
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignSelf: 'center',
-          }}
-        />
-      );
-    }
-
-    return (
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignSelf: 'center',
-        marginLeft: 10,
-      }}
-      >
-        <H2>{data.name}</H2>
-        <Text>{data.description}</Text>
-        {(addresses.length === 0)
-          ? (<Text>Пунктов приема не найдено</Text>)
-          : (
-            <List>
-              {addresses.map(el => (
-                <ListItem key={el.id}>
-                  {MaterialDetails.renderAdrees(el)}
-                </ListItem>
-              ))}
-            </List>
-          )
-        }
-      </View>
-    );
-  }
-}
+  return (
+    <View style={{
+      flex: 1,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      marginLeft: 10,
+    }}
+    >
+      <H2>{data.name}</H2>
+      <Text>{data.description}</Text>
+      {(addresses.length === 0)
+        ? (<Text>Пунктов приема не найдено</Text>)
+        : (
+          <List>
+            {addresses.map(el => (
+              <ListItem key={el.id}>
+                {renderAdrees(el)}
+              </ListItem>
+            ))}
+          </List>
+        )
+      }
+    </View>
+  );
+};
