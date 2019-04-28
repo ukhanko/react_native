@@ -4,38 +4,42 @@ import {
   Content,
   Form,
   Header,
-  Item,
-  Label,
   Button,
   Text,
   Icon,
 } from 'native-base';
 import { FormInput } from '../reduxForm/components/FormInput';
+import { onlyNumbers } from '../reduxForm/validators';
 
 export const Home = ({
   toBarCodeDetails,
   toBarCodeScanner,
+  invalid,
 }) => (
   <Container>
     <Header />
-    <Content>
+    <Content
+      style={{
+        padding: 15,
+      }}
+    >
       <Form>
-        <Item stackedLabel>
-          <Label>Введите штрих код</Label>
-          <FormInput
-            name="barCode"
-            keyboardType="numeric"
-          />
-        </Item>
+        <FormInput
+          name="barCode"
+          keyboardType="numeric"
+          required
+          placeholder="Введите штрих код"
+          validate={[onlyNumbers]}
+        />
       </Form>
       <Button
         rounded
         success
         style={{
           alignSelf: 'center',
-          margin: 15,
-          marginTop: 50,
+          marginTop: 20,
         }}
+        disabled={invalid}
         onPress={toBarCodeDetails}
       >
         <Text>Check it</Text>
@@ -47,7 +51,6 @@ export const Home = ({
           height: 70,
           justifyContent: 'center',
           alignSelf: 'flex-end',
-          marginRight: 15,
         }}
         onPress={toBarCodeScanner}
       >

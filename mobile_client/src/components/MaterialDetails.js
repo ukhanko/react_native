@@ -1,7 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import {
-  Spinner,
   H2,
   List,
   ListItem,
@@ -24,8 +23,9 @@ export const MaterialDetails = ({ isLoading, data }) => {
   const { addresses = [] } = data;
   if (isLoading) {
     return (
-      <Spinner
-        color="green"
+      <ActivityIndicator
+        size="large"
+        color="#00ff00"
         style={{
           flex: 1,
           justifyContent: 'center',
