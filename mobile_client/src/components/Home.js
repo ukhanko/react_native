@@ -4,17 +4,15 @@ import {
   Content,
   Form,
   Header,
-  Input,
   Item,
   Label,
   Button,
   Text,
   Icon,
 } from 'native-base';
+import { FormInput } from '../reduxForm/components/FormInput';
 
 export const Home = ({
-  barCode,
-  onBarCodeChange,
   toBarCodeDetails,
   toBarCodeScanner,
 }) => (
@@ -24,9 +22,9 @@ export const Home = ({
       <Form>
         <Item stackedLabel>
           <Label>Введите штрих код</Label>
-          <Input
-            value={barCode}
-            onChangeText={onBarCodeChange}
+          <FormInput
+            name="barCode"
+            keyboardType="numeric"
           />
         </Item>
       </Form>

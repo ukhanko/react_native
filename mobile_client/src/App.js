@@ -1,9 +1,11 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { BarcodeScanner } from './components/BarCodeScanner';
 import { BarCodeDetailsContainer } from './components/BarCodeDetailsContainer';
 import { MaterialDetailsContainer } from './components/MaterialDetailsContainer';
 import { HomeContainer } from './components/HomeContainer';
+import { store } from './store';
 
 const AppNavigator = createStackNavigator(
   {
@@ -21,5 +23,7 @@ const AppNavigator = createStackNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 export const App = () => (
-  <AppContainer />
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
 );

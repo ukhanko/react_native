@@ -1,24 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, getFormValues } from 'redux-form';
 import { Home } from './Home';
 
-export class HomeContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: '4603771220101',
-    };
-  }
+const FORM_NAME = 'Home';
 
-  render() {
-    const { navigation: { navigate } } = this.props;
-    const { inputValue } = this.state;
-    return (
-      <Home
-        barCode={inputValue}
-        onBarCodeChange={newValue => this.setState({ inputValue: newValue })}
-        toBarCodeDetails={() => navigate('BarCodeDetails', { data: inputValue })}
-        toBarCodeScanner={() => navigate('BarcodeScanner')}
-      />
-    );
-  }
-}
+const HomeClass = (props) => {
+  const {
+    navigation: { navigate },
+    formValues = {},
+  } = props;
+  const { barCode } = formValues;
+  return (
+    <Home
+      toBarCodeDetails={() => navigate('BarCodeDetails', { data: barCode })}
+      toBarCodeScanner={() => navigate('BarcodeScanner')}
+      {...props}
+    />
+  );
+};
+
+const mapStateToProps = state => ({
+  formValues: getFormValues(FORM_NAME)(state),
+});
+
+export const HomeContainer = connect(mapStateToProps)(reduxForm({
+  form: FORM_NAME,
+  initialValues: {
+    barCode: '4603771220101',
+  },
+})(HomeClass));
