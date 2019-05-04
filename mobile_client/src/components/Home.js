@@ -10,6 +10,9 @@ import {
 } from 'native-base';
 import { FormInput } from '../reduxForm/components/FormInput';
 import { onlyNumbers } from '../reduxForm/validators';
+import { screens } from '../strings.json';
+
+const strings = screens.home;
 
 export const Home = ({
   toBarCodeDetails,
@@ -28,7 +31,7 @@ export const Home = ({
           name="barCode"
           keyboardType="numeric"
           required
-          placeholder="Введите штрих код"
+          placeholder={strings.barCodePlaceholder}
           validate={[onlyNumbers]}
         />
       </Form>
@@ -42,7 +45,7 @@ export const Home = ({
         disabled={invalid}
         onPress={toBarCodeDetails}
       >
-        <Text>Check it</Text>
+        <Text>{strings.checkButtonText}</Text>
       </Button>
       <Button
         style={{

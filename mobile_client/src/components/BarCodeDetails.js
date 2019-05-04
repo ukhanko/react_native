@@ -5,6 +5,9 @@ import {
   List,
   ListItem,
 } from 'native-base';
+import { screens } from '../strings.json';
+
+const strings = screens.barCodeDetails;
 
 const renderDetails = (product, toMaterialDetails) => {
   const { id, name, materials } = product;
@@ -60,7 +63,7 @@ export const BarCodeDetails = ({
       }}
     >
       {(data.length === 0)
-        ? (<Text>Ничего не найдено</Text>)
+        ? (<Text>{strings.notFound}</Text>)
         : (data.map(el => renderDetails(el, toMaterialDetails)))
       }
     </View>

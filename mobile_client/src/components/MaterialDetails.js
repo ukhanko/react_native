@@ -5,6 +5,9 @@ import {
   List,
   ListItem,
 } from 'native-base';
+import { screens } from '../strings.json';
+
+const strings = screens.materialDetails;
 
 const renderAdrees = (address) => {
   const { city, building, street } = address;
@@ -45,7 +48,7 @@ export const MaterialDetails = ({ isLoading, data }) => {
       <H2>{data.name}</H2>
       <Text>{data.description}</Text>
       {(addresses.length === 0)
-        ? (<Text>Пунктов приема не найдено</Text>)
+        ? (<Text>{strings.materialDetails}</Text>)
         : (
           <List>
             {addresses.map(el => (

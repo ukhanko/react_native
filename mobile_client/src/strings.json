@@ -1,0 +1,18 @@
+{
+  "screens": {
+    "home": {
+      "barCodePlaceholder": "Введите штрих код",
+      "checkButtonText": "Проверить"
+    },
+    "barCodeDetails": {
+      "notFound": "Ничего не найдено"
+    },
+    "barCodeScanner": {
+      "nullPermission": "Requesting for camera permission",
+      "falsePermission": "No access to camera"
+    },
+    "materialDetails": {
+      "notFound": "Пунктов приема не найдено"
+    }
+  }
+}
