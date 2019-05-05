@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { BarcodeScanner } from './components/BarCodeScanner';
-import { BarCodeDetailsContainer } from './components/BarCodeDetailsContainer';
-import { MaterialDetailsContainer } from './components/MaterialDetailsContainer';
-import { HomeContainer } from './components/HomeContainer';
+import { BarcodeScanner } from './pages/BarCodeScanner/BarCodeScanner';
+import { BarCodeDetailsContainer } from './pages/BarCodeDetails/BarCodeDetailsContainer';
+import { MaterialDetailsContainer } from './pages/MaterialDetails/MaterialDetailsContainer';
+import { HomeContainer } from './pages/Home/HomeContainer';
 import { store } from './store';
 
 const AppNavigator = createStackNavigator(

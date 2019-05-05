@@ -5,7 +5,7 @@ import {
   List,
   ListItem,
 } from 'native-base';
-import { screens } from '../strings.json';
+import { screens } from '../../strings.json';
 
 const strings = screens.barCodeDetails;
 

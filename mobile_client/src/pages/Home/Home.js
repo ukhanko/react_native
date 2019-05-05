@@ -8,9 +8,9 @@ import {
   Text,
   Icon,
 } from 'native-base';
-import { FormInput } from '../reduxForm/components/FormInput';
-import { onlyNumbers } from '../reduxForm/validators';
-import { screens } from '../strings.json';
+import { FormInput } from '../../reduxForm/components/FormInput';
+import { onlyNumbers } from '../../reduxForm/validators';
+import { screens } from '../../strings.json';
 
 const strings = screens.home;
 

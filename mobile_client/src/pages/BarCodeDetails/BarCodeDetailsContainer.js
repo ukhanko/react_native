@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HOST } from '../constants';
+import { HOST } from '../../constants';
 import { BarCodeDetails } from './BarCodeDetails';
 
 export class BarCodeDetailsContainer extends Component {

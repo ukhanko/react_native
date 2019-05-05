@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { BarCodeScanner, Permissions } from 'expo';
-import { screens } from '../strings.json';
+import { screens } from '../../strings.json';
 
 const strings = screens.barCodeDetails;
 
