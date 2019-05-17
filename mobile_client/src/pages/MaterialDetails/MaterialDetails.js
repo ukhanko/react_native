@@ -10,7 +10,7 @@ import { screens } from '../../strings.json';
 
 const strings = screens.materialDetails;
 
-const renderAdrees = (address) => {
+const renderAddress = (address) => {
   const { city, building, street } = address;
   return (
     <Text>
@@ -39,12 +39,12 @@ export const MaterialDetails = ({ isLoading, data }) => {
       <H2>{data.name}</H2>
       <Text>{data.description}</Text>
       {(addresses.length === 0)
-        ? (<Text>{strings.materialDetails}</Text>)
+        ? (<Text>{strings.notFound}</Text>)
         : (
           <List>
             {addresses.map(el => (
               <ListItem key={el.id}>
-                {renderAdrees(el)}
+                {renderAddress(el)}
               </ListItem>
             ))}
           </List>
