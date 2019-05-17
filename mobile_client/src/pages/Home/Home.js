@@ -11,6 +11,7 @@ import {
 import { FormInput } from '../../reduxForm/components/FormInput';
 import { onlyNumbers } from '../../reduxForm/validators';
 import { screens } from '../../strings.json';
+import { styles, buttons } from './styles';
 
 const strings = screens.home;
 
@@ -21,11 +22,7 @@ export const Home = ({
 }) => (
   <Container>
     <Header />
-    <Content
-      style={{
-        padding: 15,
-      }}
-    >
+    <Content style={styles.container}>
       <Form>
         <FormInput
           name="barCode"
@@ -38,23 +35,14 @@ export const Home = ({
       <Button
         rounded
         success
-        style={{
-          alignSelf: 'center',
-          marginTop: 20,
-        }}
+        style={buttons.check}
         disabled={invalid}
         onPress={toBarCodeDetails}
       >
         <Text>{strings.checkButtonText}</Text>
       </Button>
       <Button
-        style={{
-          borderRadius: 50,
-          width: 70,
-          height: 70,
-          justifyContent: 'center',
-          alignSelf: 'flex-end',
-        }}
+        style={buttons.camera}
         onPress={toBarCodeScanner}
       >
         <Icon name="camera" />

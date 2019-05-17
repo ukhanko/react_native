@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
 } from 'native-base';
+import { styles } from './styles';
 import { screens } from '../../strings.json';
 
 const strings = screens.barCodeDetails;
@@ -46,22 +47,12 @@ export const BarCodeDetails = ({
       <ActivityIndicator
         size="large"
         color="#00ff00"
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignSelf: 'center',
-        }}
+        style={styles.container}
       />
     );
   }
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignSelf: 'center',
-      }}
-    >
+    <View style={styles.container}>
       {(data.length === 0)
         ? (<Text>{strings.notFound}</Text>)
         : (data.map(el => renderDetails(el, toMaterialDetails)))

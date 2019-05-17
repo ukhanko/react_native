@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
 } from 'native-base';
+import { styles } from './styles';
 import { screens } from '../../strings.json';
 
 const strings = screens.materialDetails;
@@ -29,22 +30,12 @@ export const MaterialDetails = ({ isLoading, data }) => {
       <ActivityIndicator
         size="large"
         color="#00ff00"
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignSelf: 'center',
-        }}
+        style={styles.loading}
       />
     );
   }
   return (
-    <View style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignSelf: 'center',
-      marginLeft: 10,
-    }}
-    >
+    <View style={styles.container}>
       <H2>{data.name}</H2>
       <Text>{data.description}</Text>
       {(addresses.length === 0)
