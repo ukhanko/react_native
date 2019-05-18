@@ -27,12 +27,15 @@ export class BarCodeDetailsContainer extends Component {
 
   render() {
     const { isLoading, data } = this.state;
-    const { navigation: { navigate } } = this.props;
+    const { navigation: { navigate, getParam } } = this.props;
+    const barCode = getParam('data', null);
     return (
       <BarCodeDetails
         isLoading={isLoading}
         data={data}
+        barCode={barCode}
         toMaterialDetails={id => navigate('MaterialDetails', { data: id })}
+        toAddInformation={() => navigate('AddInformation', { data: barCode })}
       />
     );
   }

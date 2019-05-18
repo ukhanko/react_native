@@ -22,7 +22,7 @@ export const Home = ({
 }) => (
   <Container>
     <Header />
-    <Content style={styles.container}>
+    <Content style={styles.content}>
       <Form>
         <FormInput
           name="barCode"

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View, ActivityIndicator } from 'react-native';
 import {
+  Container,
   H3,
+  Header,
   List,
   ListItem,
 } from 'native-base';
 import { styles } from './styles';
-import { screens } from '../../strings.json';
-
-const strings = screens.barCodeDetails;
+import { NotFoundPage } from "./NotFoundPage";
 
 const renderDetails = (product, toMaterialDetails) => {
   const { id, name, materials } = product;
@@ -41,6 +41,7 @@ export const BarCodeDetails = ({
   isLoading,
   data,
   toMaterialDetails,
+  toAddInformation,
 }) => {
   if (isLoading) {
     return (
@@ -52,11 +53,16 @@ export const BarCodeDetails = ({
     );
   }
   return (
-    <View style={styles.container}>
+    <Container>
+      <Header />
       {(data.length === 0)
-        ? (<Text>{strings.notFound}</Text>)
-        : (data.map(el => renderDetails(el, toMaterialDetails)))
+        ? <NotFoundPage toAddInformation={toAddInformation} />
+        : (
+          <View style={styles.container}>
+            {data.map(el => renderDetails(el, toMaterialDetails))}
+          </View>
+        )
       }
-    </View>
+    </Container>
   );
 };

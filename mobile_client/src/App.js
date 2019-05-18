@@ -13,6 +13,7 @@ const AppNavigator = createStackNavigator(
     BarcodeScanner: { screen: BarcodeScanner },
     BarCodeDetails: { screen: BarCodeDetailsContainer },
     MaterialDetails: { screen: MaterialDetailsContainer },
+    AddInformation: { screen: HomeContainer },
   },
   {
     initialRouteName: 'Home',
