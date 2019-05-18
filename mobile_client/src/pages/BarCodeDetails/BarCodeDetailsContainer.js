@@ -13,7 +13,7 @@ export class BarCodeDetailsContainer extends Component {
 
   componentDidMount() {
     const { navigation: { getParam } } = this.props;
-    const barCode = getParam('data', null);
+    const barCode = getParam('data', null) || '4603771220101';
     return fetch(`${HOST}/api/bar-codes/${barCode}`)
       .then(response => response.json())
       .then((responseJson) => {
