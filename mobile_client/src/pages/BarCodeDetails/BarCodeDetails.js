@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View } from 'react-native';
 import {
   Container,
   H3,
@@ -8,7 +8,8 @@ import {
   ListItem,
 } from 'native-base';
 import { styles } from './styles';
-import { NotFoundPage } from "./NotFoundPage";
+import { NotFoundPage } from './NotFoundPage';
+import { LoadingContainer } from '../../utils/LoadingContainer';
 
 const renderDetails = (product, toMaterialDetails) => {
   const { id, name, materials } = product;
@@ -42,19 +43,10 @@ export const BarCodeDetails = ({
   data,
   toMaterialDetails,
   toAddInformation,
-}) => {
-  if (isLoading) {
-    return (
-      <ActivityIndicator
-        size="large"
-        color="#00ff00"
-        style={styles.container}
-      />
-    );
-  }
-  return (
-    <Container>
-      <Header />
+}) => (
+  <Container>
+    <Header />
+    <LoadingContainer isLoading={isLoading}>
       {(data.length === 0)
         ? <NotFoundPage toAddInformation={toAddInformation} />
         : (
@@ -63,6 +55,6 @@ export const BarCodeDetails = ({
           </View>
         )
       }
-    </Container>
-  );
-};
+    </LoadingContainer>
+  </Container>
+);

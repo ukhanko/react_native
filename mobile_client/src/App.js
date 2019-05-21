@@ -1,22 +1,23 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { BarcodeScanner } from './pages/BarCodeScanner/BarCodeScanner';
-import { BarCodeDetailsContainer } from './pages/BarCodeDetails/BarCodeDetailsContainer';
-import { MaterialDetailsContainer } from './pages/MaterialDetails/MaterialDetailsContainer';
-import { HomeContainer } from './pages/Home/HomeContainer';
+import { BarcodeScanner } from './pages/BarCodeScanner';
+import { BarCodeDetails } from './pages/BarCodeDetails';
+import { MaterialDetails } from './pages/MaterialDetails';
+import { Home } from './pages/Home';
 import { store } from './store';
 
 const AppNavigator = createStackNavigator(
   {
-    Home: { screen: HomeContainer },
+    Home: { screen: Home },
     BarcodeScanner: { screen: BarcodeScanner },
-    BarCodeDetails: { screen: BarCodeDetailsContainer },
-    MaterialDetails: { screen: MaterialDetailsContainer },
-    AddInformation: { screen: HomeContainer },
+    BarCodeDetails: { screen: BarCodeDetails },
+    MaterialDetails: { screen: MaterialDetails },
+    AddInformation: { screen: Home },
   },
   {
-    initialRouteName: 'Home',
+    // initialRouteName: 'Home',
+    initialRouteName: 'BarCodeDetails',
     headerMode: 'none',
   },
 );
